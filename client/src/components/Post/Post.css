@@ -1,0 +1,121 @@
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.btn {
+  display: inline-block;
+  padding: 8px 18px 10px;
+  text-transform: uppercase;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.group {
+  display: block;
+}
+
+.group::before,
+.group::after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+
+.services li:nth-child(-n + 3) {
+  margin-bottom: 30px;
+} /* Adds bottom margin to the first three elements only */
+.services article {
+  padding: 20px;
+  text-align: center;
+}
+.services > li:first-child > article {
+  padding: 0;
+  text-align: left;
+}
+.services article .txtwrap {
+  padding: 20px;
+  border: 1px solid;
+}
+.services article .txtwrap * {
+  margin: 0;
+}
+.services article .txtwrap i {
+  margin-bottom: 30px;
+}
+.services article .txtwrap .heading {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+.services article .txtwrap footer {
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+*,
+*::before,
+*::after {
+  transition: all 0.3s ease-in-out;
+}
+.overlay::after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  z-index: -1;
+}
+.bgded {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.overlay {
+  position: relative;
+  z-index: 1;
+}
+.overlay {
+  color: #ffffff;
+  background-color: inherit;
+}
+.overlay::after {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.nospace {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.one_third {
+  width: 70%;
+  display: inline-block;
+  margin: 0 0 0 3.06748466257669%;
+  list-style: none;
+}
+h6,
+.heading {
+  margin: 0 0 20px 0;
+  font-size: 22px;
+  line-height: normal;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.services article .txtwrap.active,
+.services article:hover .txtwrap {
+  color: #363636;
+  background: #ffffff;
+}
+.block {
+  display: block;
+}
+@media(max-width:500px){
+  .one_third {
+    width: 100%;
+  }
+}

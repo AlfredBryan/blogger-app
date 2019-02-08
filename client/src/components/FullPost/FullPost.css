@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css?family=Fahkwang");
+@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,700i");
+
+#blog-single-post .blog-single-post-image {
+  padding-top: 22px;
+}
+
+#blog-single-post .blog-single-post-image .col-md-4 {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 22px;
+}
+
+.blog-single-post-image {
+  display: flex;
+}
+
+#blog-single-post .blog-post-des h3 {
+  padding-top: 16px;
+}
+#blog-single-post {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+.blog-post-format {
+  padding-bottom: 22px;
+}
+
+.blog-post-format span {
+  letter-spacing: 0.5px;
+  padding-right: 12px;
+  font-family: "Fahkwang", sans-serif;
+  margin-left: 20px;
+}
+
+.blog-post-format span {
+  color: #333;
+}
+
+.blog-post-format span img {
+  display: inline-block;
+  width: 42px;
+  margin-right: 4px;
+}
+
+.blog-post-des blockquote {
+  margin: 22px;
+  font-family: "EB Garamond", serif;
+}
+
+.blog-post-des .btn {
+  border-radius: 100px;
+  color: #777;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 14px 28px;
+  margin-top: 26px;
+  transition: all 0.4s ease-in-out;
+}
+
+.author {
+  color: rgb(5, 105, 199);
+  margin-left: 20px;
+}
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #ccc;
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.dialogbox .body {
+  position: relative;
+  max-width: 300px;
+  height: auto;
+  padding: 5px;
+  background-color: #dadada;
+  border-radius: 3px;
+  border: 5px solid #ccc;
+  margin-top: 100px;
+  margin-left: 380px;
+  margin-bottom: 40px;
+}
+.body .message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+@media (max-width: 500px) {
+  .dialogbox .body {
+    position: relative;
+    padding: 5px;
+    border-radius: 3px;
+    border: 5px solid #ccc;
+    margin-top: 100px;
+    margin-left: 30px;
+    margin-bottom: 40px;
+  }
+}
+
+
