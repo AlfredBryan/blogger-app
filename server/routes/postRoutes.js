@@ -1,5 +1,6 @@
 const express = require("express");
 const multer = require("multer");
+const Pusher = require("pusher");
 const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
 require("dotenv").config();
@@ -22,6 +23,15 @@ const storage = cloudinaryStorage({
 });
 
 const parser = multer({ storage: storage }).single("image");
+
+//Setting up pusher
+const pusher = new Pusher({
+  appId: "625075",
+  key: "db5ba1445826f40a4509",
+  secret: "d8ac438ce33a33085c27",
+  cluster: "mt1",
+  useTLS: true
+});
 
 // Getting All Post
 router.get("/post", (req, res) => {
@@ -49,6 +59,7 @@ router.post("/post/add", parser, (req, res) => {
         console.log(err);
         return res.status(500).send(err);
       }
+      pusher.trigger("post", "new", post);
       res.status(200).send(post);
     }
   );
@@ -72,15 +83,15 @@ router.post("/post/:id/comment", (req, res) => {
       comment: req.body.comment
     });
     post.comments.push(comment);
+    pusher.trigger("comment", "message", comment);
     comment.save(error => {
       if (error) return res.send(error);
     });
     post.save((error, post) => {
       if (error) return res.send(error);
       res.send(post);
-      req.io.sockets.emit("New comment", post)
     });
-  }); 
+  });
 });
 
 // Adding or Removing A Like to A single Post

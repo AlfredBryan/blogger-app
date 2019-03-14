@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { ClapComponent } from "react-clap";
 import moment from "moment";
+import Pusher from "pusher-js";
 import axios from "axios";
 
 import Footer from "../Footer/Footer";
@@ -12,30 +10,59 @@ class FullPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      comment: "",
+      comments: [],
       loadedPost: null
     };
   }
-  notify = () => {
-    toast.success("Post Successful !", {
-      position: toast.POSITION.TOP_CENTER
-    });
-  };
+
   componentDidMount() {
+    const postId = this.props.match.params.id;
+    console.log(postId);
     if (this.props.match.params.id) {
       axios.get("/api/post/" + this.props.match.params.id).then(res => {
         this.setState({
-          loadedPost: res.data
+          loadedPost: res.data,
+          comments: res.data.comments
         });
-        console.log(res.data);
+        console.log(res.data.comments);
       });
     }
+    const pusher = new Pusher("db5ba1445826f40a4509", {
+      cluster: "mt1",
+      useTLS: true
+    });
+    const channel = pusher.subscribe("comment");
+    channel.bind("message", data => {
+      this.setState({ comments: [...this.state.comments, data], comment: "" });
+    });
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let postId = this.props.match.params.id;
+    let { comment } = this.state;
+    axios
+      .post(`/api/post/${postId}/comment`, { comment })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        throw err;
+      });
+  };
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   deletePostHandler = () => {
     axios.delete("/post/delete/" + this.props.match.params.id);
   };
   render() {
-    const { loadedPost } = this.state;
+    const { loadedPost, comments } = this.state;
     let post = <p>Please select a Post!</p>;
     if (this.props.match.params.id) {
       post = <p>loading...</p>;
@@ -61,17 +88,6 @@ class FullPost extends Component {
                     {loadedPost.comments.length}
                   </span>
                 </div>
-
-                <ClapComponent
-                  popupClapCount={this.state.clapsCount}
-                  maxClapCount={50}
-                  onChange={(newClapCount, diff) => {
-                    this.setState({
-                      clapsCount: newClapCount,
-                      totalClapCount: this.state.totalClapCount + diff
-                    });
-                  }}
-                />
                 <div className="blog-post-des">
                   <blockquote>{loadedPost.post}</blockquote>
                   <div className="blog-post-image">
@@ -95,20 +111,28 @@ class FullPost extends Component {
                   </h2>
                   <form>
                     <div className="dialogbox">
-                      <div className="body">
-                        <span className="tip tip-left" />
-                        <div className="message">
-                          <span>
-                            I just made a comment about this comment box which
-                            is purely made from CSS.
-                          </span>
+                      {comments.map(comment => (
+                        <div key={comment._id} className="body">
+                          <span className="tip tip-left" />
+                          <div className="message">
+                            <span>{comment.comment}</span>
+                          </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
                     <div>
-                      <textarea name="post" />
+                      <textarea
+                        name="comment"
+                        id="comment"
+                        value={this.state.comment}
+                        onChange={this.handleChange}
+                      />
                     </div>
-                    <button type="submit" name="button">
+                    <button
+                      type="submit"
+                      name="button"
+                      onClick={this.handleSubmit}
+                    >
                       Comment
                     </button>
                   </form>
