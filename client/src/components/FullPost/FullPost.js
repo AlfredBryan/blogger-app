@@ -3,7 +3,6 @@ import moment from "moment";
 import Pusher from "pusher-js";
 import axios from "axios";
 
-import Footer from "../Footer/Footer";
 import "./FullPost.css";
 
 class FullPost extends Component {
