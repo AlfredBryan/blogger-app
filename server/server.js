@@ -26,11 +26,9 @@ app.use("/api", PostRoutes);
 
 
 // Connecting to Database
-mongoose.set("useCreateIndex", true);
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true }, () => {
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, autoIndex: false }, () => {
   console.log("Connected to MongoDB");
 });
-
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
