@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import moment from "moment";
 import axios from "axios";
 
 import Post from "../../../components/Post/Post";
-import Footer from "../../../components/Footer/Footer";
 import "./Posts.css";
 
 class Posts extends Component {
@@ -47,61 +46,208 @@ class Posts extends Component {
       );
     });
     return (
-      <div>
-        <section id="showcase">
-          <div className="container">
-            <div className="row center-xs center-sm center-md center-lg middle-xs middle-sm middle-md middle-lg">
-              <div className="col-xs-10 col-sm-10 col-md-10 col-lg-7 showcase-content">
-                <h1>
-                  Welcome to <span className="primary-text">Blogger</span>Bryan
-                </h1>
-                <p>News Reaches you as soon as it Leaks</p>
-              </div>
-            </div>
+      <React.Fragment>
+        <div id="wrapper" className="fade-in">
+          <div id="intro">
+            <h1>
+              This is
+              <br />
+              Bloggify
+            </h1>
+            <ul className="actions">
+              <li>
+                <a
+                  href="#header"
+                  className="button icon solo fa-arrow-down scrolly"
+                >
+                  Continue
+                </a>
+              </li>
+            </ul>
           </div>
-        </section>
-        <div className="container">
-          <div className="row">
-            <section className="col-md-4">{posts}</section>
-          </div>
-        </div>
-        <section id="info">
-          <div className="container">
-            <div className="row center-xs center-sm center-md center-lg middle-xs middle-sm middle-md middle-lg">
-              <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+          <header id="header">
+            <a href="/" className="logo">
+              Bloggify
+            </a>
+          </header>
+
+          <nav id="nav">
+            <ul className="links">
+              <li className="active">
+                <a href="index.html">This is Bloggify</a>
+              </li>
+              <li>
+                <a href="/new-post">Add Post</a>
+              </li>
+            </ul>
+            <ul className="icons">
+              <li>
+                <a
+                  href="https://twitter.com/IkennaAlfred"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="icon fa-twitter"
+                >
+                  <span className="label">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/alfred.chimereze.bryan"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="icon fa-facebook"
+                >
+                  <span className="label">Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/mhizta_bryan/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="icon fa-instagram"
+                >
+                  <span className="label">Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/AlfredBryan"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="icon fa-github"
+                >
+                  <span className="label">GitHub</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <div id="main">
+            <article className="post featured">
+              <header className="major">
+                <span className="date">{moment(Date.now()).format("LLL")}</span>
+                <h2>
+                  <a href="#">
+                    And this is a<br />
+                    massive headline
+                  </a>
+                </h2>
+                <p>
+                  Aenean ornare velit lacus varius enim ullamcorper proin
+                  aliquam
+                  <br />
+                  facilisis ante sed etiam magna interdum congue. Lorem ipsum
+                  dolor
+                  <br />
+                  amet nullam sed etiam veroeros.
+                </p>
+              </header>
+              <a href="#" className="image main">
                 <img
-                  src={require("../../../components/Image/iphone.png")}
-                  alt="phone"
+                  src={require("../../../components/Image/homebg.jpg")}
+                  alt=""
                 />
-              </div>
-              <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <h2>Core Features</h2>
-                <ul>
+              </a>
+            </article>
+            <section className="posts">
+              <article>
+                <div>{posts}</div>
+              </article>
+            </section>
+          </div>
+
+          <footer id="footer">
+            <section>
+              <form method="post" action="#">
+                <div className="fields">
+                  <div className="field">
+                    <label htmlFor="name">Name</label>
+                    <input type="text" name="name" id="name" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="email">Email</label>
+                    <input type="text" name="email" id="email" />
+                  </div>
+                  <div className="field">
+                    <label htmlFor="message">Message</label>
+                    <textarea name="message" id="message" rows="3" />
+                  </div>
+                </div>
+                <ul className="actions">
                   <li>
-                    <i className="fa fa-check" /> Fully Optimized
-                  </li>
-                  <li>
-                    <i className="fa fa-check" /> Free Support
-                  </li>
-                  <li>
-                    <i className="fa fa-check" /> Free Upgrades
-                  </li>
-                  <li>
-                    <i className="fa fa-check" /> UpTime Guarantee
-                  </li>
-                  <li>
-                    <i className="fa fa-check" /> Mulitple Users
-                  </li>
-                  <li>
-                    <i className="fa fa-check" /> Plug & Play
+                    <input type="submit" value="Send Message" />
                   </li>
                 </ul>
-              </div>
-            </div>
+              </form>
+            </section>
+            <section className="split contact">
+              <section>
+                <h3>Phone</h3>
+                <p>2348133826317</p>
+              </section>
+              <section>
+                <h3>Email</h3>
+                <p>alfred.chimereze@gmail.com</p>
+              </section>
+              <section>
+                <h3>Social</h3>
+                <ul className="icons alt">
+                  <li>
+                    <a
+                      href="https://twitter.com/IkennaAlfred"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="icon alt fa-twitter"
+                    >
+                      <span className="label">Twitter</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.facebook.com/alfred.chimereze.bryan"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="icon alt fa-facebook"
+                    >
+                      <span className="label">Facebook</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/mhizta_bryan/"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="icon alt fa-instagram"
+                    >
+                      <span className="label">Instagram</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/AlfredBryan"
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="icon fa-github"
+                    >
+                      <span className="label">GitHub</span>
+                    </a>
+                  </li>
+                </ul>
+              </section>
+            </section>
+          </footer>
+
+          <div id="copyright">
+            <ul>
+              <li>&copy;2019</li>
+              <li>Design by: Bryan</li>
+            </ul>
           </div>
-        </section>
-        <Footer />
-      </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

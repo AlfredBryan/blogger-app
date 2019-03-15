@@ -22,6 +22,7 @@ const post = props => (
             </footer>
           </div>
         </article>
+
       </li>
     </ul>
   </div>

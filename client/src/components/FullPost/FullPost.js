@@ -69,79 +69,135 @@ class FullPost extends Component {
     }
     if (loadedPost) {
       post = (
-        <div>
-          <div className="row">
-            <div className="col-md-offset-1 col-md-10 col-sm-12">
-              <div className="blog-single-post-thumb">
-                <div className="blog-post-title">
-                  <h2 className="author">{loadedPost.title}</h2>
-                </div>
+        <React.Fragment>
+          <div id="wrapper">
+            <header id="header">
+              <a href="/" className="logo">
+                Bloggify
+              </a>
+            </header>
 
-                <div className="blog-post-format">
-                  <span>{loadedPost.author}</span>
-                  <span>
-                    <i className="fa fa-date" />{" "}
-                    {moment(loadedPost.date).format("Do MMM YYYY")}
+            <nav id="nav">
+              <ul className="links">
+                <li>
+                  <a href="/">This is Bloggify</a>
+                </li>
+                <li>
+                  <a href="/new-post">Add Post</a>
+                </li>
+              </ul>
+              <ul className="icons">
+                <li>
+                  <a
+                    href="https://twitter.com/IkennaAlfred"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="icon fa-twitter"
+                  >
+                    <span className="label">Twitter</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.facebook.com/alfred.chimereze.bryan"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="icon fa-facebook"
+                  >
+                    <span className="label">Facebook</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/mhizta_bryan/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="icon fa-instagram"
+                  >
+                    <span className="label">Instagram</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/AlfredBryan"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    className="icon fa-github"
+                  >
+                    <span className="label">GitHub</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+            <div id="main">
+              <section className="post">
+                <header className="major">
+                  <span className="date">
+                    {moment(Date.now()).format("LLL")}
                   </span>
-                  <span>
-                    <i className="fa fa-comment-o" />{" "}
-                    {loadedPost.comments.length}
-                  </span>
+                  <h1>{loadedPost.title}</h1>
+                  <p>{loadedPost.author}</p>
+                </header>
+                <div className="image main">
+                  <img src={loadedPost.image} alt="blog" />
                 </div>
-                <div className="blog-post-des">
-                  <blockquote>{loadedPost.post}</blockquote>
-                  <div className="blog-post-image">
-                    <img
-                      src={loadedPost.image}
-                      className="img-responsive"
-                      alt="Blog"
-                      style={{ width: "400px" }}
-                    />
+                <p>{loadedPost.post}</p>
+              </section>
+            </div>
+            <footer id="footer">
+              <section>
+                <div className="container">
+                  <div className="row center-xs center-sm center-md center-lg">
+                    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <h2>
+                        <span className="primary-text">Comments</span>
+                      </h2>
+                      <form>
+                        <div className="dialogbox">
+                          {comments.map(comment => (
+                            <div key={comment._id} className="body">
+                              <span className="tip tip-left" />
+                              <div className="message">
+                                <span>{comment.comment}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div>
+                          <textarea
+                            style={{
+                              width: "50%",
+                              marginBottom: "100px",
+                              marginLeft: "22%"
+                            }}
+                            name="comment"
+                            id="comment"
+                            value={this.state.comment}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          name="button"
+                          onClick={this.handleSubmit}
+                        >
+                          Comment
+                        </button>
+                      </form>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
+            </footer>
+            <div id="copyright">
+              <ul>
+                <li>&copy;2019</li>
+                <li>Design by: Bryan</li>
+              </ul>
             </div>
           </div>
-          <section id="page" className="contact">
-            <div className="container">
-              <div className="row center-xs center-sm center-md center-lg">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <h2>
-                    <span className="primary-text">Comments</span>
-                  </h2>
-                  <form>
-                    <div className="dialogbox">
-                      {comments.map(comment => (
-                        <div key={comment._id} className="body">
-                          <span className="tip tip-left" />
-                          <div className="message">
-                            <span>{comment.comment}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div>
-                      <textarea
-                        name="comment"
-                        id="comment"
-                        value={this.state.comment}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      name="button"
-                      onClick={this.handleSubmit}
-                    >
-                      Comment
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </section>
-          <Footer />
-        </div>
+        </React.Fragment>
       );
     }
 

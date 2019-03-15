@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import FormData from "form-data";
 import axios from "axios";
 
-import Footer from "../Footer/Footer";
+import "./NewPost.css";
 
 class NewPost extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class NewPost extends Component {
       },
       console.log(formData)
     ).then(res => {
-      console.log(res.data);
+      console.log(res);
     });
     this.notify();
   };
@@ -66,65 +66,93 @@ class NewPost extends Component {
   render() {
     return (
       <div>
-        <section id="page" className="contact">
-          <div className="container">
-            <div className="row center-xs center-sm center-md center-lg">
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h2>
-                  <span className="primary-text">Add</span> Post
-                </h2>
+        <div className="container">
+          <div className="row center-xs center-sm center-md center-lg">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h2>
+                <span className="primary-text">Add Post</span>
+              </h2>
+              <section>
                 <form
                   encType="multipart/form-data"
                   onSubmit={this.postDataHandler}
                 >
-                  <div>
-                    <label htmlFor="name">Author</label>
-                    <br />
-                    <input
-                      type="text"
-                      name="author"
-                      value={this.state.author}
-                      onChange={this.handlTextChange}
-                    />
+                  <div className="fields">
+                    <div class="field">
+                      <label className="label" htmlFor="author">
+                        Author
+                      </label>
+                      <input
+                        style={{ backgroundColor: "grey" }}
+                        type="text"
+                        value={this.state.author}
+                        onChange={this.handlTextChange}
+                        name="author"
+                        id="author"
+                      />
+                    </div>
+                    <div className="field">
+                      <label className="label" htmlFor="title">
+                        Title
+                      </label>
+                      <input
+                        style={{ backgroundColor: "grey" }}
+                        type="text"
+                        value={this.state.title}
+                        name="title"
+                        id="title"
+                        onChange={this.handlTextChange}
+                      />
+                    </div>
+                    <div className="field">
+                      <label className="label" htmlFor="image">
+                        Image
+                      </label>
+                      <input
+                        type="file"
+                        name="image"
+                        id="image"
+                        onChange={this.handleImageChange}
+                      />
+                    </div>
+                    <div className="field">
+                      <label className="label" htmlFor="post">
+                        Post
+                      </label>
+                      <textarea
+                        style={{ backgroundColor: "grey" }}
+                        name="post"
+                        value={this.state.post}
+                        onChange={this.handlTextChange}
+                        id="post"
+                        rows="3"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="title">Title</label>
-                    <br />
-                    <input
-                      type="text"
-                      name="title"
-                      value={this.state.title}
-                      onChange={this.handlTextChange}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="title">Image</label>
-                    <br />
-                    <input
-                      type="file"
-                      name="image"
-                      onChange={this.handleImageChange}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="post">Post</label>
-                    <br />
-                    <textarea
-                      name="post"
-                      value={this.state.post}
-                      onChange={this.handlTextChange}
-                    />
-                  </div>
-                  <button type="submit" onClick={this.postDataHandler}>
-                    Submit
+                  <button
+                    style={{
+                      border: "1px solid white",
+                      color: "white",
+                      backgroundColor: "white"
+                    }}
+                    onClick={this.postDataHandler}
+                    className="mybtn"
+                    type="submit"
+                  >
+                    Post
                   </button>
                 </form>
-              </div>
+              </section>
             </div>
           </div>
           <ToastContainer transition={Slide} />
-        </section>
-        <Footer />
+        </div>
+        <div id="copyright">
+          <ul>
+            <li>&copy;2019</li>
+            <li>Design by: Bryan</li>
+          </ul>
+        </div>
       </div>
     );
   }
